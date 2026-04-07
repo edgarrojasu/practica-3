@@ -9,17 +9,17 @@ void escritura(char * str)
     cin.ignore(1000, '\n');
     cout << "Ingrese el texto a modificar: "<<endl;
     cin.getline(str, 256);
-    fout.open("archivo.txt",ios::app);  //Abrir el archivo para escritura
+    fout.open("archivo.txt",ios::ate);  //Abrir el archivo para escritura
     fout<<str;          //Escribir en el archivo
     fout.close();       //Cerrar el archivo
 }
 
-void actualizarArchivo(string contenido) {
-    fout.open("archivo.txt", ios::app); // Borra lo viejo y pone lo nuevo
+void actualizarArchivo(const char* contenido)
+{
+    fout.open("archivo.txt", ios::app);
     if (fout.is_open())
     {
-        fout << contenido;
+        fout << contenido << endl;
         fout.close();
-        cout << "[Archivo actualizado con exito]" << endl;
     }
 }

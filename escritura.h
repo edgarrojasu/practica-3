@@ -2,6 +2,6 @@
 #define ESCRITURA_H
 
 void escritura(char * str);
-void actualizarArchivo(string contenido);
+void actualizarArchivo(const char* contenido);
 
 #endif // ESCRITURA_H

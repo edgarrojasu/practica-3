@@ -1,6 +1,7 @@
 #ifndef LZ78_H
 #define LZ78_H
 
-string compressLZ78(const char* input);
+void compressLZ78(const char* input);
+void decompressLZ78(const char* filename);
 
-#endif // LZ78_H
+#endif
