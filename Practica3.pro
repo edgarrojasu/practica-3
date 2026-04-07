@@ -10,7 +10,8 @@ SOURCES += \
         main.cpp \
         rle.cpp \
         rotacionbits.cpp \
-        xor.cpp
+        xor.cpp\
+        generales.cpp
 
 HEADERS += \
     escritura.h \
@@ -18,7 +19,8 @@ HEADERS += \
     lz78.h \
     rle.h \
     rotacionbits.h \
-    xor.h
+    xor.h\
+    generales.h
 
 DISTFILES += \
     archivoprueba.txt

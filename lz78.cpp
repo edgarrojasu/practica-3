@@ -16,24 +16,29 @@ int findEntry(Entry* dict, int size, int prefix, char c) {
     return -1;
 }
 
-void compressLZ78(const char* input) {
-    Entry* dict = new Entry[1000]; // tamaño fijo simple
-    int dictSize = 1; // índice 0 vacío
-
+string compressLZ78(const char* input) {
+    Entry* dict = new Entry[1000];
+    int dictSize = 1;
     int currentPrefix = 0;
 
-    cout << "Salida (indice, caracter):\n";
+    // Aquí acumularemos el resultado en lugar de usar cout
+    string resultado = "";
 
     for (int i = 0; input[i] != '\0'; i++) {
         char c = input[i];
-
         int index = findEntry(dict, dictSize, currentPrefix, c);
 
         if (index != -1) {
             currentPrefix = index;
         } else {
-            cout << "(" << currentPrefix << ", " << c << ")\n";
+            // Construimos la cadena: (prefijo, caracter)
+            resultado += "(";
+            resultado += to_string(currentPrefix);
+            resultado += ", ";
+            resultado += c;
+            resultado += ") ";
 
+            // Guardamos en el diccionario
             dict[dictSize].prefix = currentPrefix;
             dict[dictSize].c = c;
             dictSize++;
@@ -43,5 +48,6 @@ void compressLZ78(const char* input) {
     }
 
     delete[] dict;
+    return resultado; // Devolvemos la cadena completa
 }
 
