@@ -1,41 +1,60 @@
 #include <iostream>
 #include <fstream>
-
+#include <stdexcept>
+#include "lectura.h"
 using namespace std;
 
-ifstream leer_archiv(string nombre_archivo){
-    ifstream fin;
-
-    fin.open(nombre_archivo, ios::in);
-    if(!fin.is_open()){
-        cout << "No abierto" << endl;
+// Lee el contenido completo de un archivo en buffer (char array). Lanza excepcion si no abre.
+void leerArchivoABuffer(const char* filename, char* buffer, int maxLen)
+{
+    ifstream fin(filename);
+    if (!fin.is_open())
+    {
+        throw runtime_error("No se pudo abrir el archivo de entrada");
     }
-    else{
-        return fin;
+    int i = 0;
+    char ch;
+    while (fin.get(ch) && i < maxLen - 1)
+    {
+        if (ch == '\n') break;   // leer hasta fin de primera linea
+        buffer[i++] = ch;
     }
+    buffer[i] = '\0';
     fin.close();
+}
+
+ifstream abrirArchivo(const char* nombre)
+{
+    ifstream fin(nombre);
+    if (!fin.is_open())
+    {
+        throw runtime_error("No se pudo abrir el archivo");
+    }
     return fin;
 }
 
-string lecturalinea(ifstream instancia){
-    string lectura;
-    while(getline(instancia, lectura)){
-        cout << lectura << endl;
-        return lectura;
+void lecturalinea(ifstream& instancia)
+{
+    char linea[1024];
+    while (instancia.getline(linea, 1024))
+    {
+        cout << linea << endl;
     }
-    cout << lectura << endl;
-    return lectura;
 }
 
-void lecturachar(ifstream instancia){
+void lecturachar(ifstream& instancia)
+{
     char letra;
-    while(instancia.good()){
-        letra=instancia.get();
-        if(letra != '\n'){
-            cout << letra;
-        }
-        else{
-            cout << endl;
+    while (instancia.good())
+    {
+        letra = instancia.get();
+        if (instancia.good())
+        {
+            if (letra != '\n')
+                cout << letra;
+            else
+                cout << endl;
         }
     }
 }
+

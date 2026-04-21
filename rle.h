@@ -6,5 +6,7 @@ using namespace std;
 
 string rleCompress(const string& input);
 string rleCompressPtr(const char* input);
+string rleDecompress(const string& input);
+string rleDecompressPtr(const char* input);
 
 #endif // RLE_H
