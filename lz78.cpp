@@ -78,10 +78,8 @@ void compressLZ78(const char* input)
         }
     }
 
-    // Al final del for, antes de cerrar archivos
     if (currentPrefix != 0)
     {
-        // Buscar el carácter del prefijo actual para emitirlo completo
         fout  << "(" << dict[currentPrefix].prefix << "," << dict[currentPrefix].c << ") ";
         fcomp << "(" << dict[currentPrefix].prefix << "," << dict[currentPrefix].c << ") ";
     }
@@ -91,7 +89,6 @@ void compressLZ78(const char* input)
     delete[] dict;
 }
 
-// Reconstruye la frase de una entrada del diccionario recursivamente
 void buildPhrase(Entry* dict, int index, char* buffer, int& len)
 {
     if (index == 0) return;
@@ -133,7 +130,6 @@ void decompressLZ78(const char* filename)
             idx = idx * 10 + (ch - '0');
         }
 
-        // Si solo hay índice sin carácter, es token pendiente final
         if (ch == ')')
         {
             char phrase[1024];
@@ -144,12 +140,10 @@ void decompressLZ78(const char* filename)
             continue;
         }
 
-        // Leer el carácter
         char c;
         fin.get(c);
-        fin.get(ch); // consume ')'
+        fin.get(ch);
 
-        // Reconstruir la frase
         char phrase[1024];
         int len = 0;
         buildPhrase(dict, idx, phrase, len);
@@ -158,7 +152,6 @@ void decompressLZ78(const char* filename)
 
         fout << phrase;
 
-        // Agregar al diccionario
         if (dictSize >= capacity)
         {
             dict = growDict(dict, capacity);

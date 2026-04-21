@@ -33,8 +33,8 @@ string rleCompressPtr(const char* input)
         }
         else
         {
-            result += to_string(count); // número primero
-            result += input[i];         // carácter después
+            result += to_string(count);
+            result += input[i];
             count = 1;
         }
     }

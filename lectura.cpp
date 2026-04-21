@@ -4,7 +4,6 @@
 #include "lectura.h"
 using namespace std;
 
-// Lee el contenido completo de un archivo en buffer (char array). Lanza excepcion si no abre.
 void leerArchivoABuffer(const char* filename, char* buffer, int maxLen)
 {
     ifstream fin(filename);
@@ -16,7 +15,7 @@ void leerArchivoABuffer(const char* filename, char* buffer, int maxLen)
     char ch;
     while (fin.get(ch) && i < maxLen - 1)
     {
-        if (ch == '\n') break;   // leer hasta fin de primera linea
+        if (ch == '\n') break;
         buffer[i++] = ch;
     }
     buffer[i] = '\0';

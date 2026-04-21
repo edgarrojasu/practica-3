@@ -18,7 +18,6 @@ unsigned char rotateRight(unsigned char value, int shift)
     return (value >> shift) | (value << (8 - shift));
 }
 
-// Cifra in-place sobre char*: primero rotacion izquierda, luego XOR
 void cifrarTexto(char* text, int n, char key)
 {
     for (int i = 0; text[i] != '\0'; i++)
@@ -30,7 +29,6 @@ void cifrarTexto(char* text, int n, char key)
     }
 }
 
-// Descifra in-place sobre char*: primero XOR, luego rotacion derecha
 void descifrarTexto(char* text, int n, char key)
 {
     for (int i = 0; text[i] != '\0'; i++)
@@ -42,7 +40,6 @@ void descifrarTexto(char* text, int n, char key)
     }
 }
 
-// Cifra un archivo en sitio: rotacion izquierda + XOR
 void cifrarArchivoCombinado(const char* filename, int n, char key)
 {
     ifstream fin(filename, ios::binary);
@@ -75,7 +72,6 @@ void cifrarArchivoCombinado(const char* filename, int n, char key)
     fout.close();
 }
 
-// Descifra un archivo en sitio: XOR + rotacion derecha
 void descifrarArchivoCombinado(const char* filename, int n, char key)
 {
     ifstream fin(filename, ios::binary);

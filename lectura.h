@@ -4,7 +4,6 @@
 #include <fstream>
 using namespace std;
 
-// Lee el contenido de un archivo en un buffer char[]. Lanza excepcion si falla.
 void leerArchivoABuffer(const char* filename, char* buffer, int maxLen);
 
 ifstream abrirArchivo(const char* nombre);

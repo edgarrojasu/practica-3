@@ -2,16 +2,16 @@
 #include <fstream>
 using namespace std;
 
-ofstream fout;    //Instancia de la clase iftream (escritura) para representar le archivo
+ofstream fout;
 
 void escritura(char * str)
 {
     cin.ignore(1000, '\n');
     cout << "Ingrese el texto a modificar: "<<endl;
     cin.getline(str, 256);
-    fout.open("archivo.txt",ios::app);  //Abrir el archivo para escritura
-    fout<<str<<"\n";          //Escribir en el archivo
-    fout.close();       //Cerrar el archivo
+    fout.open("archivo.txt",ios::app);
+    fout<<str<<"\n";
+    fout.close();
 }
 
 void actualizarArchivo(const char* contenido)
@@ -24,7 +24,6 @@ void actualizarArchivo(const char* contenido)
     }
 }
 
-// Cifra/descifra un archivo completo con XOR
 void cifrarArchivo(const char* filename, char key)
 {
     ifstream fin(filename, ios::binary);
@@ -45,7 +44,6 @@ void cifrarArchivo(const char* filename, char key)
     fout.close();
 }
 
-// Copia el contenido de un archivo a archivo.txt
 void copiarContenidoArchivo(const char* filename)
 {
     ifstream fin(filename);
